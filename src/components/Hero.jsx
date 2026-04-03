@@ -17,14 +17,7 @@ export default function Hero() {
           <a href="#demo" className="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-3.5 rounded-xl font-semibold transition">Pedir demo gratuita →</a>
           <a href="#features" className="bg-gray-100 text-gray-800 hover:bg-gray-200 px-8 py-3.5 rounded-xl font-semibold transition">Ver cómo funciona</a>
         </div>
-        <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto border-t border-gray-200 pt-16 mb-0">
-          {[['+200','clientes activos'],['98%','satisfacción'],['< 1 día','de configuración']].map(([val,label]) => (
-            <div key={label} className="text-center">
-              <p className="text-4xl font-bold text-gray-900">{val}</p>
-              <p className="text-sm text-gray-400 mt-1">{label}</p>
-            </div>
-          ))}
-        </div>
+
       </div>
     </section>
   )
