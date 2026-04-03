@@ -1,9 +1,25 @@
 import { useState } from 'react'
+import { supabase } from '../supabase'
+
 export default function Formulario() {
   const [enviado, setEnviado] = useState(false)
-  const [form, setForm] = useState({ nombre: '', email: '', empresa: '', mensaje: '' })
+  const [form, setForm] = useState({ nombre: '', email: '', telefono: '', empresa: '', mensaje: '' })
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
-  const handleSubmit = e => { e.preventDefault(); setEnviado(true) }
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const { data, error } = await supabase.from('contacts').insert([{
+      nombre: form.nombre,
+      email: form.email,
+      telefono: form.telefono,
+      empresa: form.empresa,
+      notas: form.mensaje,
+      fuente: 'Landing CRM',
+      estado_funnel: 'Nuevo lead',
+      fecha_entrada: new Date().toISOString().split('T')[0]
+    }])
+    console.log('Supabase response:', data, error)
+    if (!error) setEnviado(true)
+  }
   const inputClass = "w-full rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:border-indigo-400 transition bg-white"
   return (
     <section id="demo" className="py-32 px-6" style={{background: '#f9fafb'}}>
@@ -22,6 +38,7 @@ export default function Formulario() {
           <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 p-8 flex flex-col gap-4 bg-white shadow-sm">
             <input name="nombre" onChange={handleChange} required placeholder="Tu nombre" className={inputClass} />
             <input name="email" type="email" onChange={handleChange} required placeholder="Email de trabajo" className={inputClass} />
+            <input name="telefono" type="tel" onChange={handleChange} placeholder="Teléfono (opcional)" className={inputClass} />
             <input name="empresa" onChange={handleChange} placeholder="Empresa o sector (opcional)" className={inputClass} />
             <textarea name="mensaje" onChange={handleChange} placeholder="¿Qué necesitas gestionar?" rows={3} className={inputClass} />
             <button type="submit" className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3.5 rounded-xl font-semibold transition mt-2">Quiero mi demo gratuita →</button>
