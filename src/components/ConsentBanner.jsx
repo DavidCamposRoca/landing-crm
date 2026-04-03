@@ -12,6 +12,17 @@ export default function CookieBanner() {
 
   const handleConsent = (an, mk) => {
     localStorage.setItem('cookie_pref', JSON.stringify({ analytics: an, marketing: mk }))
+    if (window.gtag) {
+      window.gtag('consent', 'update', {
+        'analytics_storage': an ? 'granted' : 'denied',
+        'ad_storage': mk ? 'granted' : 'denied',
+        'ad_user_data': mk ? 'granted' : 'denied',
+        'ad_personalization': mk ? 'granted' : 'denied',
+        'personalization_storage': 'denied',
+        'functionality_storage': 'granted',
+        'security_storage': 'granted'
+      })
+    }
     setVisible(false)
   }
 
