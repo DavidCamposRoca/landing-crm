@@ -22,12 +22,12 @@ export default function Formulario() {
       setEnviado(true)
       if (window.dataLayer) {
         window.dataLayer.push({
-          event: 'form_submit_demo',
+          event: 'generate_lead_demo',
           form_name: 'demo_crm'
         })
       }
       if (window.gtag) {
-        window.gtag('event', 'generate_lead', {
+        window.gtag('event', 'generate_lead_demo', {
           event_category: 'formulario',
           event_label: 'demo_solicitada',
           value: 1
