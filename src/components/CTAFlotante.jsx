@@ -5,7 +5,7 @@ export default function CTAFlotante() {
   if (!visible) return null
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 flex justify-center px-4 pb-4">
-      <div className="flex items-center gap-4 rounded-2xl px-6 py-4 shadow-2xl max-w-xl w-full" style={{background: '#111111', border: '1px solid rgba(255,255,255,0.1)'}}>
+      <div className="flex items-center gap-4 rounded-2xl px-6 py-4 shadow-2xl max-w-xl w-full" style={{background: '#111111', border: '2px solid #f97316'}}>
         <div className="flex -space-x-2 flex-shrink-0">
           <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&q=80" className="w-9 h-9 rounded-full object-cover border-2 border-gray-800" alt="" />
           <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&q=80" className="w-9 h-9 rounded-full object-cover border-2 border-gray-800" alt="" />
