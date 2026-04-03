@@ -3,7 +3,7 @@ import { supabase } from '../supabase'
 
 export default function Formulario() {
   const [enviado, setEnviado] = useState(false)
-  const [form, setForm] = useState({ nombre: '', email: '', telefono: '', empresa: '', mensaje: '' })
+  const [form, setForm] = useState({ nombre: '', email: '', telefono: '', empresa: '', mensaje: '', privacidad: false })
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
   const handleSubmit = async e => {
     e.preventDefault()
@@ -41,6 +41,23 @@ export default function Formulario() {
             <input name="telefono" type="tel" onChange={handleChange} placeholder="Teléfono (opcional)" className={inputClass} />
             <input name="empresa" onChange={handleChange} placeholder="Empresa o sector (opcional)" className={inputClass} />
             <textarea name="mensaje" onChange={handleChange} placeholder="¿Qué necesitas gestionar?" rows={3} className={inputClass} />
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                name="privacidad"
+                id="privacidad"
+                required
+                onChange={e => setForm({ ...form, privacidad: e.target.checked })}
+                className="mt-1 accent-indigo-500"
+              />
+              <label htmlFor="privacidad" className="text-xs text-gray-500 leading-relaxed">
+                He leído y acepto la{' '}
+                <a href="/politica-de-privacidad" target="_blank" className="text-indigo-400 hover:underline">
+                  política de privacidad
+                </a>
+                . Marketing Web Madrid tratará tus datos para gestionar tu solicitud de demo. No se cederán a terceros salvo obligación legal.
+              </label>
+            </div>
             <button type="submit" className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3.5 rounded-xl font-semibold transition mt-2">Quiero mi demo gratuita →</button>
             <p className="text-center text-xs text-gray-400">Sin spam. Sin tarjeta de crédito.</p>
           </form>

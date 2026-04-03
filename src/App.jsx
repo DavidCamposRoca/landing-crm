@@ -1,3 +1,4 @@
+import ConsentBanner from './components/ConsentBanner'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Features from './components/Features'
@@ -16,6 +17,7 @@ function App() {
       <Testimonios />
       <Formulario />
       <Footer />
+      <ConsentBanner />
     </div>
   )
 }
