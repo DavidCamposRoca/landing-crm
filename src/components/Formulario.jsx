@@ -18,7 +18,22 @@ export default function Formulario() {
       fecha_entrada: new Date().toISOString().split('T')[0]
     }])
     console.log('Supabase response:', data, error)
-    if (!error) setEnviado(true)
+    if (!error) {
+      setEnviado(true)
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          event: 'form_submit_demo',
+          form_name: 'demo_crm'
+        })
+      }
+      if (window.gtag) {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'formulario',
+          event_label: 'demo_solicitada',
+          value: 1
+        })
+      }
+    }
   }
   const inputClass = "w-full rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:border-indigo-400 transition bg-white"
   return (
